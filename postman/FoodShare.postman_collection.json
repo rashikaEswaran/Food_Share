@@ -1,0 +1,664 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "name": "FoodShare API",
+    "description": "Postman Collection for FoodShare food donation and redistribution platform.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Donors",
+      "description": "Endpoints to manage food donors (canteens, restaurants, event organizers, etc.).",
+      "item": [
+        {
+          "name": "Create Donor (Success) - [Test Case 1]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ABC Canteen\",\n  \"email\": \"abc@example.com\",\n  \"phone\": \"9876543210\",\n  \"organizationName\": \"ABC Campus Canteen\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/donors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "donors"
+              ]
+            },
+            "description": "Test Case 1: Successfully create a new donor with valid organization details."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Donor - Missing Required Field - [Test Case 10]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"email\": \"invalid-email\",\n  \"phone\": \"\",\n  \"organizationName\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/donors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "donors"
+              ]
+            },
+            "description": "Test Case 10: Validation failure when required fields (name, email, phone, organizationName) are blank or invalid."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Donors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/donors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "donors"
+              ]
+            },
+            "description": "Retrieve the list of all registered donors."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Donor by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/donors/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "donors",
+                "1"
+              ]
+            },
+            "description": "Retrieve details of a specific donor by their ID."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Update Donor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ABC Canteen Updated\",\n  \"email\": \"abc_updated@example.com\",\n  \"phone\": \"9876543210\",\n  \"organizationName\": \"ABC Campus Main Canteen\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/donors/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "donors",
+                "1"
+              ]
+            },
+            "description": "Update an existing donor by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Delete Donor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/donors/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "donors",
+                "1"
+              ]
+            },
+            "description": "Delete a donor by ID."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. NGOs",
+      "description": "Endpoints to manage NGOs and charitable organizations claiming food.",
+      "item": [
+        {
+          "name": "Create NGO (Success) - [Test Case 2]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hope Foundation\",\n  \"email\": \"hope@example.com\",\n  \"phone\": \"9876501234\",\n  \"address\": \"Chennai\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ngos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ngos"
+              ]
+            },
+            "description": "Test Case 2: Successfully create a new NGO."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All NGOs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ngos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ngos"
+              ]
+            },
+            "description": "Retrieve list of all registered NGOs."
+          },
+          "response": []
+        },
+        {
+          "name": "Get NGO by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ngos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ngos",
+                "1"
+              ]
+            },
+            "description": "Retrieve details of a specific NGO by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Update NGO",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hope Foundation Updated\",\n  \"email\": \"hope_updated@example.com\",\n  \"phone\": \"9876501234\",\n  \"address\": \"Chennai Central\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ngos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ngos",
+                "1"
+              ]
+            },
+            "description": "Update an existing NGO by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Delete NGO",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ngos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ngos",
+                "1"
+              ]
+            },
+            "description": "Delete an NGO by ID."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Food Listings",
+      "description": "Endpoints to create and browse food donation listings.",
+      "item": [
+        {
+          "name": "Create Food Listing (Success) - [Test Case 3]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"foodName\": \"Vegetable Rice\",\n  \"description\": \"Fresh surplus food\",\n  \"quantity\": 20,\n  \"unit\": \"plates\",\n  \"expiryTime\": \"2026-12-31T20:00:00\",\n  \"pickupLocation\": \"ABC Campus Canteen\",\n  \"donor\": {\n    \"id\": 1\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/food-listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-listings"
+              ]
+            },
+            "description": "Test Case 3: Successfully create a food donation listing linked to existing donor (id: 1) with future expiryTime."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Available Food",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-listings/available",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-listings",
+                "available"
+              ]
+            },
+            "description": "View only AVAILABLE food listings that are unexpired and ready to be claimed."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Food Listing by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-listings/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-listings",
+                "1"
+              ]
+            },
+            "description": "Retrieve details of a specific food listing by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Food Listings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-listings"
+              ]
+            },
+            "description": "Retrieve all food listings regardless of status."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Food Listing - Invalid Quantity",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"foodName\": \"Vegetable Rice\",\n  \"description\": \"Fresh surplus food\",\n  \"quantity\": 0,\n  \"unit\": \"plates\",\n  \"expiryTime\": \"2026-12-31T20:00:00\",\n  \"pickupLocation\": \"ABC Campus Canteen\",\n  \"donor\": {\n    \"id\": 1\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/food-listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-listings"
+              ]
+            },
+            "description": "Validation test: Quantity of 0 triggers @Positive validation failure (400 Bad Request)."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Update Food Listing",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"foodName\": \"Vegetable Biryani\",\n  \"description\": \"Fresh surplus biryani and raita\",\n  \"quantity\": 25,\n  \"unit\": \"plates\",\n  \"expiryTime\": \"2026-12-31T22:00:00\",\n  \"pickupLocation\": \"ABC Campus Canteen Counter 2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/food-listings/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-listings",
+                "1"
+              ]
+            },
+            "description": "Update an existing food listing by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Delete Food Listing",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-listings/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-listings",
+                "2"
+              ]
+            },
+            "description": "Delete an un-claimed food listing by ID."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Claims",
+      "description": "Endpoints to claim food listings and mark claims as collected.",
+      "item": [
+        {
+          "name": "Claim Available Food (Success) - [Test Case 5]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"foodListingId\": 1,\n  \"ngoId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/claims",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "claims"
+              ]
+            },
+            "description": "Test Case 5: Successfully claim an available food listing on behalf of an NGO."
+          },
+          "response": []
+        },
+        {
+          "name": "Attempt Claim - Already Claimed Food - [Test Case 8]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"foodListingId\": 1,\n  \"ngoId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/claims",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "claims"
+              ]
+            },
+            "description": "Test Case 8: Attempting to claim a food listing whose status is already CLAIMED or COLLECTED fails with 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "Attempt Claim - Expired Food - [Test Case 7]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"foodListingId\": 2,\n  \"ngoId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/claims",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "claims"
+              ]
+            },
+            "description": "Test Case 7: Attempting to claim an expired food listing fails with 400 Bad Request and updates status to EXPIRED."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Claims",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/claims",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "claims"
+              ]
+            },
+            "description": "Retrieve all claims submitted by NGOs."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Claim by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/claims/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "claims",
+                "1"
+              ]
+            },
+            "description": "Retrieve details of a specific claim by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Food as Collected (Success) - [Test Case 6]",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/claims/1/collect",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "claims",
+                "1",
+                "collect"
+              ]
+            },
+            "description": "Test Case 6: Successfully mark a claim and its associated food listing as COLLECTED."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

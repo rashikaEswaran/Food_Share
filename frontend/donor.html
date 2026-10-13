@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Portal - Campus Food Donation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Campus Surplus Food Donation System</h1>
+        <p>Donor Portal</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="donor.html">Donor Portal</a>
+            <a href="ngo.html">NGO Portal</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Notification Box -->
+        <div id="alertBox" class="alert"></div>
+
+        <!-- SECTION 1: Add Donor -->
+        <div class="card">
+            <h2>Section 1: Add Donor</h2>
+            <form id="donorForm" onsubmit="addDonor(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="donorName">Donor Name *</label>
+                        <input type="text" id="donorName" required placeholder="e.g. John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="donorEmail">Email *</label>
+                        <input type="email" id="donorEmail" required placeholder="e.g. canteen@campus.edu">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="donorPhone">Phone *</label>
+                        <input type="text" id="donorPhone" required placeholder="e.g. +91 9876543210">
+                    </div>
+                    <div class="form-group">
+                        <label for="organizationName">Organization / Canteen Name *</label>
+                        <input type="text" id="organizationName" required placeholder="e.g. Central Campus Canteen">
+                    </div>
+                </div>
+                <button type="submit" class="btn" id="donorSubmitBtn">Add Donor</button>
+                <button type="button" class="btn btn-cancel" id="donorCancelBtn" style="display: none;" onclick="cancelDonorEdit()">Cancel</button>
+            </form>
+
+            <h3 style="margin-top: 25px; margin-bottom: 12px; font-size: 15px; color: #2c3e50;">Registered Donors</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Organization</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="donorsTableBody">
+                    <tr><td colspan="6" style="text-align: center;">Loading donors...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 2: Add Surplus Food -->
+        <div class="card">
+            <h2>Section 2: Add Surplus Food Listing</h2>
+            <form id="foodForm" onsubmit="addFoodListing(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="foodDonorSelect">Select Donor *</label>
+                        <select id="foodDonorSelect" required>
+                            <option value="">-- Choose Donor --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="foodName">Food Name *</label>
+                        <input type="text" id="foodName" required placeholder="e.g. Steamed Rice & Dal">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="foodDescription">Description</label>
+                    <textarea id="foodDescription" rows="2" placeholder="e.g. Freshly cooked lunch surplus, packaged in food-grade trays."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="foodQuantity">Quantity *</label>
+                        <input type="number" id="foodQuantity" min="1" required placeholder="e.g. 25">
+                    </div>
+                    <div class="form-group">
+                        <label for="foodUnit">Unit *</label>
+                        <input type="text" id="foodUnit" required placeholder="e.g. servings, kg, packets">
+                    </div>
+                    <div class="form-group">
+                        <label for="expiryTime">Expiry Time *</label>
+                        <input type="datetime-local" id="expiryTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickupLocation">Pickup Location *</label>
+                    <input type="text" id="pickupLocation" required placeholder="e.g. Canteen Block B, Ground Floor Counter">
+                </div>
+
+                <button type="submit" class="btn" id="foodSubmitBtn">Add Food Listing</button>
+                <button type="button" class="btn btn-cancel" id="foodCancelBtn" style="display: none;" onclick="cancelFoodListingEdit()">Cancel</button>
+            </form>
+        </div>
+
+        <!-- SECTION 3: Food Listings -->
+        <div class="card">
+            <h2>Section 3: All Food Listings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Food Name</th>
+                        <th>Donor Org</th>
+                        <th>Quantity</th>
+                        <th>Expiry Time</th>
+                        <th>Pickup Location</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="foodListingsTableBody">
+                    <tr><td colspan="8" style="text-align: center;">Loading listings...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadDonors();
+            loadFoodListings();
+        });
+    </script>
+</body>
+</html>

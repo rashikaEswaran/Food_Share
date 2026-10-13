@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Portal - Campus Food Donation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Campus Surplus Food Donation System</h1>
+        <p>NGO Portal</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="donor.html">Donor Portal</a>
+            <a href="ngo.html">NGO Portal</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Notification Box -->
+        <div id="alertBox" class="alert"></div>
+
+        <!-- SECTION 1: Add NGO -->
+        <div class="card">
+            <h2>Section 1: Add NGO</h2>
+            <form id="ngoForm" onsubmit="addNGO(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ngoName">NGO Name *</label>
+                        <input type="text" id="ngoName" required placeholder="e.g. Hope Food Shelter">
+                    </div>
+                    <div class="form-group">
+                        <label for="ngoEmail">Email *</label>
+                        <input type="email" id="ngoEmail" required placeholder="e.g. contact@hopeshelter.org">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ngoPhone">Phone *</label>
+                        <input type="text" id="ngoPhone" required placeholder="e.g. +91 9123456780">
+                    </div>
+                    <div class="form-group">
+                        <label for="ngoAddress">Address *</label>
+                        <input type="text" id="ngoAddress" required placeholder="e.g. 12 City Welfare Lane, Near Campus Gate 3">
+                    </div>
+                </div>
+                <button type="submit" class="btn" id="ngoSubmitBtn">Add NGO</button>
+                <button type="button" class="btn btn-cancel" id="ngoCancelBtn" style="display: none;" onclick="cancelNGOEdit()">Cancel</button>
+            </form>
+
+            <h3 style="margin-top: 25px; margin-bottom: 12px; font-size: 15px; color: #2c3e50;">All NGOs</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ngosTableBody">
+                    <tr><td colspan="6" style="text-align: center;">Loading NGOs...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 2: Available Food Listings -->
+        <div class="card">
+            <h2>Section 2: Available Food (Live Claim Wall)</h2>
+            <p style="font-size: 13px; color: #666; margin-bottom: 12px;">Select which registered NGO you are claiming on behalf of before claiming.</p>
+            <div class="form-group" style="max-width: 320px;">
+                <label for="claimingNgoSelect">Active Claiming NGO *</label>
+                <select id="claimingNgoSelect">
+                    <option value="">-- Select Registered NGO --</option>
+                </select>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Food Name</th>
+                        <th>Donor Organization</th>
+                        <th>Quantity</th>
+                        <th>Expiry Time</th>
+                        <th>Pickup Location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="availableFoodTableBody">
+                    <tr><td colspan="6" style="text-align: center;">Loading available listings...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 3: Claims -->
+        <div class="card">
+            <h2>Section 3: Claims & Collection Tracking</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Claim ID</th>
+                        <th>Food Item</th>
+                        <th>NGO Name</th>
+                        <th>Claimed Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="claimsTableBody">
+                    <tr><td colspan="6" style="text-align: center;">Loading claims...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadClaimingNGOs();
+            loadAvailableFood();
+            loadClaims();
+        });
+    </script>
+</body>
+</html>
